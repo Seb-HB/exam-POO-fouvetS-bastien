@@ -30,7 +30,7 @@ class MotoManager extends Database implements Crud{
         try {
             $request=$this->bdd->prepare('SELECT * FROM motos WHERE id= :id');
             $request->execute(['id' => $id]);
-            $moto=$request->fetchAll();
+            $moto=$request->fetch();
     
             if (count($moto)>0){
                 $theMoto=new moto($moto['marque'], $moto['model'], $moto['type'], $moto['img'], $moto['description'], $moto['id']);
@@ -40,12 +40,32 @@ class MotoManager extends Database implements Crud{
         }
         return $theMoto;
 	}
+
+	/**
+	 *
+	 * @return mixed
+	 */
+	function getMotosByType($type) {
+        $motoTab=[];
+        try {
+            $request=$this->bdd->prepare('SELECT * FROM motos WHERE type= :type');
+            $request->execute(['type' => $type]);
+            $motos=$request->fetchAll();
+    
+            foreach($motos as $moto) {
+                $motoTab[]=new moto($moto['marque'], $moto['model'], $moto['type'], $moto['img'], $moto['description'], $moto['id']);
+            }
+        } catch (PDOException $e) {
+            $this->setMessage('erreur BDD :'.$e->getMessage(),1);
+        }
+        return $motoTab;
+	}
 	
 	/**
 	 *
 	 * @return mixed
 	 */
-	function update(Moto $moto) {
+	function update($moto) {
         try {
             $request=$this->bdd->prepare('UPDATE motos SET  marque=:marque, model=:model,type=:type, img=:img, description=:description WHERE id= :id');
             $request->execute([' id' => $moto->getId(), 'marque'=>$moto->getMarque(), 'model' => $moto->getModel(),
@@ -74,7 +94,7 @@ class MotoManager extends Database implements Crud{
 	 *
 	 * @return mixed
 	 */
-	function insert(Moto $moto) {
+	function insert($moto) {
         try {
             $request=$this->bdd->prepare('INSERT INTO motos (marque, model, type, img, description) VALUES (:marque, :model, :type, :img, :description)');
             $request->execute([
