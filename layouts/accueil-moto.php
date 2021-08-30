@@ -1,9 +1,11 @@
 <?php
     require 'layouts/partials/head.php';
     require 'layouts/partials/header.php';
- ?>   
+    require 'layouts/partials/display-errors.php';
+ ?> 
+
 <div class="displayInfos">
-    <table class="table .table-striped table-hover">    
+    <table class="table .table-striped">    
     <thead>
         <tr>
         <th scope="col">Photo</th>

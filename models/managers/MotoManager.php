@@ -13,7 +13,7 @@ class MotoManager extends Database implements Crud{
             $motos=$request->fetchAll();
     
             foreach($motos as $moto) {
-                $motoTab[]=new moto($moto['marque'], $moto['model'], $moto['type'], $moto['img'], $moto['description'], $moto['id']);
+                $motoTab[]=new moto($moto['marque'], $moto['model'], $moto['type'],  $moto['description'], $moto['img'], $moto['id']);
             }
         } catch (PDOException $e) {
             $this->setMessage('erreur BDD :'.$e->getMessage(),1);
@@ -33,7 +33,7 @@ class MotoManager extends Database implements Crud{
             $moto=$request->fetch();
     
             if (count($moto)>0){
-                $theMoto=new moto($moto['marque'], $moto['model'], $moto['type'], $moto['img'], $moto['description'], $moto['id']);
+                $theMoto=new moto($moto['marque'], $moto['model'], $moto['type'],  $moto['description'], $moto['img'], $moto['id']);
             }
         } catch (PDOException $e) {
             $this->setMessage('erreur BDD :'.$e->getMessage(),1);
@@ -53,7 +53,7 @@ class MotoManager extends Database implements Crud{
             $motos=$request->fetchAll();
     
             foreach($motos as $moto) {
-                $motoTab[]=new moto($moto['marque'], $moto['model'], $moto['type'], $moto['img'], $moto['description'], $moto['id']);
+                $motoTab[]=new moto($moto['marque'], $moto['model'], $moto['type'],  $moto['description'], $moto['img'], $moto['id']);
             }
         } catch (PDOException $e) {
             $this->setMessage('erreur BDD :'.$e->getMessage(),1);
@@ -95,18 +95,21 @@ class MotoManager extends Database implements Crud{
 	 * @return mixed
 	 */
 	function insert($moto) {
+        var_dump($moto);
         try {
-            $request=$this->bdd->prepare('INSERT INTO motos (marque, model, type, img, description) VALUES (:marque, :model, :type, :img, :description)');
+            $request=$this->bdd->prepare('INSERT INTO motos (marque, model, type,  description, img) VALUES (:marque, :model, :type, :description , :img)');
             $request->execute([
                 'marque' => $moto->getMarque(),
                 'model' => $moto->getModel(),
                 'type'=>$moto->getType(),
-                'img' => $moto->getImg(),
-                'description' => $moto->getDescription()
+                'description' => $moto->getDescription(),
+                'img' => $moto->getImg()
             ]);
             $this->setMessage('Ajout  de la moto réussie', 0);
         } catch (PDOException $e) {
             $this->setMessage('Echec de l\'Ajout: '.$e->getMessage(),1);
+            var_dump($e);
+            die();
         }
 	}
 

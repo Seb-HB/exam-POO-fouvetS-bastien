@@ -9,32 +9,21 @@
             <ul class="navbar-nav ml-auto">
                 <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Enduro</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Address Book</a>
+                    <a class="nav-link" href="index.php?type=Enduro"></i>Enduro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
+                    <a class="nav-link" href="index.php?type=Custom">Custom</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
+                    <a class="nav-link" href="index.php?type=Sportive">Sportive</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+                    <a class="nav-link" href="index.php?type=Roadster">Roadster</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+                    <a class="nav-link" href="index.php?add=1">Ajouter une moto</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <div id="displayMessages">
-        <?php
-            if (isset ($_SESSION['message'])) {
-                $txtColor=($_SESSION['message']['error'] == '0')? 'text-success': 'text-danger';
-                echo('<p'.$txtColor.'>'.$_SESSION['message']['txt'].'</p>');
-            }
-        ?>
-    </div>
 </header>

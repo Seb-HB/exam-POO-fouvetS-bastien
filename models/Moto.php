@@ -7,7 +7,7 @@ class Moto{
     private $img;
     private $description;
 
-    public function __construct($marque, $model, $type, $img, $description, $id=null){
+    public function __construct($marque, $model, $type, $description, $img =null,$id=null){
         $this->marque = $marque;
         $this->model = $model;
         $this->type = $type;
