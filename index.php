@@ -1,6 +1,10 @@
 <?php
     session_start();
     require 'autoload.php';
+    if (isset($_GET['deco'])){
+        $controller=new LoginController();
+        $controller->logout();
+    }
 
     if (isset($_SESSION['utilisateur'])){
         $controller= new MotoController;

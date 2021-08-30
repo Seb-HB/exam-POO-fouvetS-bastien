@@ -41,6 +41,11 @@ class LoginController{
         
     }
 
+    function logout(){
+        unset($_SESSION['utilisateur']);
+        header('Location:index.php');
+    }
+
 }
 
 

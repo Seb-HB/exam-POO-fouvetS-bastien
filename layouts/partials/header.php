@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?add=1">Ajouter une moto</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?deco=1">Déconnexion</a>
+                </li>
             </ul>
         </div>
     </nav>
