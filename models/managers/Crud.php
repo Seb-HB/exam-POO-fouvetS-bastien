@@ -11,6 +11,8 @@ interface Crud{
 
     public function insert($objet);
 
+    function setMessage($message, $error);
+
 }
 
 
